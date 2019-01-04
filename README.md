@@ -4,3 +4,10 @@ Have you ever been to a party where one guy is controling the music and all the 
 
 ## Information
 Once the site is accessed either through phone or desktop, you will be looking at a shared music playlist. Using Spotify's API you can search for any song on Spotify using artist or song name. Once added to the playlist other users can vote on the song. The song with the highest vote count will be the next song to play. You will need a Spotify account to be able to play music. 
+
+## Tech Stack
+- React
+- spotify-web-api-node
+- express
+- request
+- more to come...
