@@ -1,5 +1,5 @@
 # Party Vibes (may change name)
-##Introduction
+## Introduction
 Have you ever been to a party where one guy is controling the music and all the songs he is playing sucks but no matter how many boo him he still doesn't change the playlist. With this app you will be able to share a playlist. The songs with the highest amounts of likes will play next. Now longer will a party suck because of boring music but now you can get some bops playing.
 
 ## Information
