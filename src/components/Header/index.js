@@ -1,17 +1,26 @@
-
 import React from 'react';
 import "./header.css";
 
 
 const Header = () => (
-  <div className="jumbotron jumbotron-fluid">
-    <div className="text-right mr-5">
-      <button type="button" className="btn btn-success">Log In</button>
+  <nav className="navbar navbar-expand-lg navbar-light bg-light">
+    <a className="navbar-brand" href="#">Party Vibes!</a>
+    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarText" aria-controls="navbarText" aria-expanded="false" aria-label="Toggle navigation">
+      <span className="navbar-toggler-icon"></span>
+    </button>
+    <div className="collapse navbar-collapse" id="navbarText">
+      <ul className="navbar-nav mr-auto">
+        <li className="nav-item active">
+          <a className="nav-link" href="#">Home <span className="sr-only">(current)</span></a>
+        </li>
+        <li className="nav-item">
+          <a className="nav-link" href="#">About</a>
+        </li>
+      </ul>
+      <span className="navbar-text">
+        <button type="button" className="btn btn-success mb-2 mt-2 ml-2 loginButton" >Log In with Spotify</button>
+      </span>
     </div>
-    <div className="container text-center">
-      <h1 className="display-4">Party Vibes!</h1>
-      <p className="lead">Submit on Vote on the Next Song at your Party!</p>
-    </div>
-  </div>
+  </nav>
 );
 export default Header;
