@@ -14,9 +14,9 @@ var querystring = require('querystring');
 var cookieParser = require('cookie-parser');
 require("dotenv").config();
 
-var client_id = process.env.CLIENT_ID; // Your client id
-var client_secret = process.env.CLIENT_SECRET; // Your secret
-var redirect_uri = process.env.REDIRECT_URI; // Your redirect uri
+var client_id = "1ab9d9a6f67c4dd28cca2cce40e362fc"; // Your client id
+var client_secret = "a6093c7728e34a5385fca5aa16c41861"; // Your secret
+var redirect_uri = "http://localhost:8888/callback"; // Your redirect uri
 
 /**
  * Generates a random string containing numbers and letters

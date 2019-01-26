@@ -40,7 +40,7 @@ class NowPlaying extends Component {
             .then((response) => {
                 this.setState({
                     nowPlaying: {
-                        name: response.item.name,
+                        track: response.item.name,
                         albumArt: response.item.album.images[0].url,
                         artist: response.item.artists[0].name
                         
@@ -53,7 +53,7 @@ class NowPlaying extends Component {
     render() {
         return (
             <div>
-                Now Playing: {this.state.nowPlaying.name}<td />
+                Now Playing: {this.state.nowPlaying.track}<td />
                 Artist: {this.state.nowPlaying.artist}<td />
                 <img src={this.state.nowPlaying.albumArt} alt="Album Art" style={{ height: 150 }} />
                 <td />
