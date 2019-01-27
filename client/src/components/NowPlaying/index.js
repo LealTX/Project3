@@ -43,23 +43,29 @@ class NowPlaying extends Component {
                         track: response.item.name,
                         albumArt: response.item.album.images[0].url,
                         artist: response.item.artists[0].name
-                        
+
                     }
                 });
-                console.log(response)
             })
     }
 
     render() {
         return (
-            <div>
-                Now Playing: {this.state.nowPlaying.track}<td />
-                Artist: {this.state.nowPlaying.artist}<td />
+            <div className="nowPlaying">
+            <div className="track">
+                Now Playing: {this.state.nowPlaying.track}
+            </div>
+            <div className="artist">
+                Artist: {this.state.nowPlaying.artist}
+            </div>
+            <div className="albumArt">
                 <img src={this.state.nowPlaying.albumArt} alt="Album Art" style={{ height: 150 }} />
-                <td />
+            </div>
+            <div className="buttonCheck">
                 <button onClick={() => this.getNowPlaying()}>
                     Check Now Playing
                 </button>
+            </div>
             </div>
         );
     }
