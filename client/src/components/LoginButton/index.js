@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import {Icon} from 'react-materialize'
 import "./login.css";
 import "../../actions/actions.js";
 import SpotifyWebApi from 'spotify-web-api-js';
@@ -57,51 +58,32 @@ class LoginButton extends Component {
         if(loggIn){
             return (
                 <div>
-                    <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                        <div className="navbar-brand">Party Vibes</div>
-                        <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                            <span className="navbar-toggler-icon"></span>
-                        </button>
-                        <div class="collapse navbar-collapse" id="navbarSupportedContent">
-                            <ul className="navbar-nav mr-auto">
-                            <li className="nav-item active">
-                                <div className="nav-link">Home</div>
-                            </li>
-                            </ul>
-                            <form className="form-inline my-2 my-lg-0">
-                               <b>Username</b>: {this.state.displayName}
-                            </form>
-                        </div>
-                    </nav>
-                </div>
+                    <nav>
+                    <div className="nav-wrapper">
+                    <a href="#!" className="brand-logo"><Icon left>music_note</Icon>Party Vibes</a>
+                    <ul className="right hide-on-med-and-down">
+                        <li><a href="sass.html"><Icon left>person</Icon>{this.state.displayName}</a></li>
+                    </ul>
+                    </div>
+                </nav>
+              </div>
             );
             
         }
         else{
             return (
                 <div>
-                <nav className="navbar navbar-expand-lg navbar-light bg-light">
-                    <div className="navbar-brand">Party Vibes</div>
-                    <button className="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
-                        <span className="navbar-toggler-icon"></span>
-                    </button>
-                    <div className="collapse navbar-collapse" id="navbarSupportedContent">
-                        <ul className="navbar-nav mr-auto">
-                        <li className="nav-item active">
-                            <div className="nav-link">Home</div>
-                        </li>
-                        </ul>
-                        <div className="form-inline my-2 my-lg-0">
-                            <a href='http://localhost:8888'>
-                                <button>Login to Spotify</button>
-                            </a>
-                        </div>
-                    </div>
-                </nav>
-            </div>
+                <nav>
+                <div className="nav-wrapper">
+                <a href="#!" className="brand-logo"><Icon left>music_note</Icon>Party Vibes</a>
+                <ul className="right hide-on-med-and-down">
+                    <li><a href='http://localhost:8888'><Icon left>person</Icon>Login to Spotify</a></li>
+                </ul>
+                </div>
+            </nav>
+          </div>
             );
         }
-
     }
 }
 export default LoginButton;

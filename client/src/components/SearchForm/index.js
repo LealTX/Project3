@@ -1,15 +1,17 @@
 import React from "react";
+import { Button, Icon } from 'react-materialize';
 
 function Search(props) {
     return (
-        <form>
+        <div class="input-field col s6">
             <input
                 type="text"
                 value={props.searchTrack}
                 onChange={props.onChange}
             />
-            <button onClick={props.search}>Search</button>
-        </form>
+            <label for="searchMusic">Search Tracks or Artists</label>
+            <Button waves='light'onClick={props.search}>Search<Icon left>search</Icon></Button>
+        </div>
     );
 }
 

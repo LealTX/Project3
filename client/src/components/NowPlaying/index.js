@@ -1,6 +1,7 @@
 import React, { Component } from "react";
 import "../../actions/actions.js";
 import SpotifyWebApi from 'spotify-web-api-js';
+import { Button } from 'react-materialize';
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -64,9 +65,9 @@ class NowPlaying extends Component {
                 <img src={this.state.nowPlaying.albumArt} alt="Album Art" style={{ height: 150 }} />
             </div>
             <div className="buttonCheck">
-                <button onClick={() => this.getNowPlaying()}>
+                <Button onClick={() => this.getNowPlaying()}>
                     Check Now Playing
-                </button>
+                </Button>
             </div>
             </div>
         );
