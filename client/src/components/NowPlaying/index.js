@@ -17,7 +17,9 @@ class NowPlaying extends Component {
             loggIn: token ? true : false,
             nowPlaying: {
                 name: 'Not Checked',
-                albumArt: ''
+                albumArt: '',
+                track: '',
+                artist: ''
             }
         }
     }

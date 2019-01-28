@@ -77,7 +77,7 @@ class Playback extends Component {
         //     searchResults: [ event.target.value ]
         // });
         // this.setState({ searchTrack: event.target.value })
-        console.log("Reults: " + this.state.searchResults)
+        console.log("Results: " + this.state.searchResults)
         console.log("Track: " + this.state.searchTrack)
     }
 
