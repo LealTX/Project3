@@ -1,37 +1,16 @@
 import React, { Component } from "react";
 import { render } from 'react-dom';
 import "../../actions/actions.js";
+import Search from "../SearchForm";
+import ResultList from "../ResultList";
 import SpotifyWebApi from 'spotify-web-api-js';
 
 const spotifyApi = new SpotifyWebApi();
-
-
-const Result = ({ searchResults }) => {
-    return searchResults.map(r => <div>{r}</div>);
-}
-
-const Search = (props) => {
-    const {
-        searchTrack,
-        onChange,
-        search
-    } = props;
-
-    return <div>
-        <input
-            type="text"
-            value={searchTrack}
-            onChange={onChange}
-        />
-        <button onClick={search}>Search</button>
-    </div>;
-}
 
 class Playback extends Component {
     constructor(props) {
         super(props);
         const params = this.getHashParams();
-        console.log(params);
         const token = params.access_token;
         if (token) {
             spotifyApi.setAccessToken(token);
@@ -39,12 +18,14 @@ class Playback extends Component {
         this.state = {
             loggIn: token ? true : false,
             searchTrack: '',
-            results: [0,1,2,3,4],
-            searchResults: []
+            results: [0, 1, 2, 3, 4],
+            searchResults: [],
+            searchKey: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.searchTracks = this.searchTracks.bind(this);
+        this.onSelect = this.onSelect.bind(this);
     }
 
     getHashParams() {
@@ -63,7 +44,7 @@ class Playback extends Component {
     searchTracks(search) {
         console.log(search);
         spotifyApi.searchTracks(search)
-            .then( data => {
+            .then(data => {
                 this.setState({
                     searchResults: [
                         `${data.tracks.items[0].artists[0].name} - ${data.tracks.items[0].name}`,
@@ -83,12 +64,21 @@ class Playback extends Component {
     }
 
     handleSubmit(event) {
+        event.preventDefault();
         console.log('A name was submitted: ' + this.state.searchTrack);
         setTimeout(() => {
             this.searchTracks(this.state.searchTrack);
             event.preventDefault();
         }, 1000)
-        
+    }
+
+    onSelect(event) {
+        // this.setState({
+        //     searchResults: [ event.target.value ]
+        // });
+        // this.setState({ searchTrack: event.target.value })
+        console.log("Reults: " + this.state.searchResults)
+        console.log("Track: " + this.state.searchTrack)
     }
 
     render() {
@@ -96,13 +86,16 @@ class Playback extends Component {
 
         return (
             <div>
-            <Search
-              searchTrack={searchTrack}
-              onChange={this.handleChange}
-              search={this.handleSubmit}
-            />
-            <Result searchResults={searchResults} />
-          </div>
+                <Search
+                    searchTrack={searchTrack}
+                    onChange={this.handleChange}
+                    search={this.handleSubmit}
+                />
+                <ResultList
+                    searchResults={searchResults}
+                    onClick={ this.onSelect }
+                />
+            </div>
         );
     }
 }
