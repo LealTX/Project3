@@ -38,7 +38,9 @@ class LoginButton extends Component {
     getProfile() {
         spotifyApi.getMe()
             .then(data => {
-                this.setState({ displayName: `${data.display_name}` })
+                let display_Name =  data.display_name;
+                display_Name = display_Name.charAt(0).toUpperCase() + display_Name.slice(1);
+                this.setState({ displayName: `${display_Name}` })
             }, function(err) {
                 console.log('Something went wrong!', err);
             }
@@ -52,7 +54,7 @@ class LoginButton extends Component {
             this.getProfile();
             return (
             <div className="login">
-                {this.state.displayName}
+                Username: {this.state.displayName}
             </div>
             );
         }
