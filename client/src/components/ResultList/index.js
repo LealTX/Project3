@@ -4,8 +4,14 @@ function ResultList(props) {
     return (
         <ul clasName="list-group">
             {props.searchResults.map(r => (
-                <li className="list-group-item" key={r.id}>
-                    <button key={r.id} onClick={props.onSelect}>{r}</button>
+                <li className="list-group-item" key={r}>
+                    <button
+                        key={r.id} 
+                        value={r}
+                        onClick={props.onSelect}
+                        >
+                        {r}
+                        </button>
                 </li>
             ))}
         </ul>

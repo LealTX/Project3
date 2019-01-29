@@ -20,7 +20,8 @@ class Playback extends Component {
             searchTrack: '',
             results: [0, 1, 2, 3, 4],
             searchResults: [],
-            searchKey: ''
+            searchKey: '',
+            addedSong: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -73,12 +74,13 @@ class Playback extends Component {
     }
 
     onSelect(event) {
-        // this.setState({
-        //     searchResults: [ event.target.value ]
-        // });
-        // this.setState({ searchTrack: event.target.value })
-        console.log("Results: " + this.state.searchResults)
-        console.log("Track: " + this.state.searchTrack)
+        this.setState({ addedSong: event.target.value })
+        setTimeout(() => {
+            console.log(this.state.addedSong);
+        }, 1000)
+        this.setState({ searchTrack: '' })
+        this.setState( { searchResults: [] } )
+        // console.log(this.state.searchTrack)
     }
 
     render() {
@@ -93,7 +95,7 @@ class Playback extends Component {
                 />
                 <ResultList
                     searchResults={searchResults}
-                    onClick={ this.onSelect }
+                    onSelect={ this.onSelect }
                 />
             </div>
         );
