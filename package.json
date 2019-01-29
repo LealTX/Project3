@@ -18,7 +18,7 @@
     "request": "~2.83.0"
   },
   "scripts": {
-    "start": "concurrently \"cd client && yarn start\" \"cd auth-server && node authorization_code/app.js\"",
+    "start": "concurrently \"cd client && yarn start\" \"node auth-server/authorization_code/app.js\"",
     "install": "cd client && yarn install",
     "build": "cd client && yarn build",
     "test": "react-scripts test",
