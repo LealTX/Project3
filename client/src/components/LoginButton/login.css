@@ -1,0 +1,10 @@
+.titleText {
+    font-size: 25px;
+    font-weight: bold;
+    padding-left: 20px;
+}
+
+.loginDisplay {
+    padding-right: 20px;
+    font-size: 20px;
+}

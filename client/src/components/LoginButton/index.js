@@ -3,6 +3,7 @@ import {Icon} from 'react-materialize'
 import "./login.css";
 import "../../actions/actions.js";
 import SpotifyWebApi from 'spotify-web-api-js';
+import "./login.css"
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -59,10 +60,12 @@ class LoginButton extends Component {
             return (
                 <div>
                     <nav>
-                    <div className="nav-wrapper">
-                    <a href="#!" className="brand-logo"><Icon left>music_note</Icon>Party Vibes</a>
-                    <ul className="right hide-on-med-and-down">
-                        <li><a href="sass.html"><Icon left>person</Icon>{this.state.displayName}</a></li>
+                    <div className="nav-wrapper titleText">
+                        <ul className="left hide-on-med-and-down"><Icon left>music_note</Icon>
+                            Party Vibes
+                        </ul>
+                    <ul className="right hide-on-med-and-down loginDisplay">
+                        <li><Icon left>person</Icon>{this.state.displayName}</li>
                     </ul>
                     </div>
                 </nav>
@@ -74,11 +77,13 @@ class LoginButton extends Component {
             return (
                 <div>
                 <nav>
-                <div className="nav-wrapper">
-                <a href="#!" className="brand-logo"><Icon left>music_note</Icon>Party Vibes</a>
-                <ul className="right hide-on-med-and-down">
-                    <li><a href='http://localhost:8888'><Icon left>person</Icon>Login to Spotify</a></li>
-                </ul>
+                <div className="nav-wrapper titleText">
+                    <ul className="left hide-on-med-and-down"><Icon left>music_note</Icon>
+                        Party Vibes
+                    </ul>
+                    <ul className="right hide-on-med-and-down loginDisplay">
+                        <li><a href='http://localhost:8888'><Icon left>person</Icon>Login to Spotify</a></li>
+                    </ul>
                 </div>
             </nav>
           </div>

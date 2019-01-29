@@ -1,0 +1,9 @@
+.nowPlaying {
+    padding-top: 15px;
+}
+
+.albumArt {
+    border-width: 2px;
+    border-style: solid;
+    border-color: black;
+}

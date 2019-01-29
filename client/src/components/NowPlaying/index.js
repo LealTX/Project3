@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../../actions/actions.js";
 import SpotifyWebApi from 'spotify-web-api-js';
 import { Button } from 'react-materialize';
+import "./style.css";
 
 const spotifyApi = new SpotifyWebApi();
 
@@ -53,22 +54,20 @@ class NowPlaying extends Component {
     }
 
     render() {
+        setTimeout(() => {
+            this.getNowPlaying();
+        }, 2000);
         return (
             <div className="nowPlaying">
-            <div className="track">
-                Now Playing: {this.state.nowPlaying.track}
-            </div>
-            <div className="artist">
-                Artist: {this.state.nowPlaying.artist}
-            </div>
-            <div className="albumArt">
-                <img src={this.state.nowPlaying.albumArt} alt="Album Art" style={{ height: 150 }} />
-            </div>
-            <div className="buttonCheck">
-                <Button onClick={() => this.getNowPlaying()}>
-                    Check Now Playing
-                </Button>
-            </div>
+                <div className="track">
+                    Now Playing: {this.state.nowPlaying.track}
+                </div>
+                <div className="artist">
+                    Artist: {this.state.nowPlaying.artist}
+                </div>
+                <div className="albumDiv">
+                    <img className ="albumArt" src={this.state.nowPlaying.albumArt} alt="Album Art" style={{ height: 150 }} />
+                </div>
             </div>
         );
     }
