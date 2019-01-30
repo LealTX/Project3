@@ -9016,6 +9016,11 @@ split-string@^3.0.1, split-string@^3.0.2:
   dependencies:
     extend-shallow "^3.0.0"
 
+spotify-web-api-js@^1.1.1:
+  version "1.1.1"
+  resolved "https://registry.yarnpkg.com/spotify-web-api-js/-/spotify-web-api-js-1.1.1.tgz#3eb395bc7b1cb86706a38492446cc65923177322"
+  integrity sha512-1via0GvAIxExxtQr30bQSwifxwN2i5nJsJGsn26DTtFmaPIzn0jYiI2eJAuBIdxejphE/ijHHcJNtf2HClS8QA==
+
 spotify-web-api-node@^4.0.0:
   version "4.0.0"
   resolved "https://registry.yarnpkg.com/spotify-web-api-node/-/spotify-web-api-node-4.0.0.tgz#55f060975220cdac18efc0e781f84130b12004c0"

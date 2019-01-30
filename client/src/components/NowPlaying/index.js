@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import "../../actions/actions.js";
 import SpotifyWebApi from 'spotify-web-api-js';
-import { Button } from 'react-materialize';
+import SearchContainer from '../SearchContainer'
 import "./style.css";
 
 const spotifyApi = new SpotifyWebApi();
@@ -58,16 +58,18 @@ class NowPlaying extends Component {
             this.getNowPlaying();
         }, 2000);
         return (
-            <div className="nowPlaying">
-                <div className="track">
-                    Now Playing: {this.state.nowPlaying.track}
-                </div>
-                <div className="artist">
-                    Artist: {this.state.nowPlaying.artist}
-                </div>
-                <div className="albumDiv">
-                    <img className ="albumArt" src={this.state.nowPlaying.albumArt} alt="Album Art" style={{ height: 150 }} />
-                </div>
+            <div className="nowPlaying row">
+                <td className="albumDiv col s3">
+                    <img className="albumArt" src={this.state.nowPlaying.albumArt} alt="Album Art" style={{ height: 200 }} />
+                </td>
+                <td className="track col s3">
+                    <text>
+                        <b>Now Playing:</b> {this.state.nowPlaying.track}<br /><b>Artist: </b>{this.state.nowPlaying.artist}
+                    </text>
+                </td>
+                <td className="search col s6">
+                    <SearchContainer />
+                </td>
             </div>
         );
     }

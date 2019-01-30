@@ -6,4 +6,16 @@
     border-width: 2px;
     border-style: solid;
     border-color: black;
+    margin-left: 40%;
+}
+
+.track {
+    vertical-align: middle;
+    font-size: 20px;
+    text-align: left;
+    margin-top: 50px;
+}
+
+.search {
+    width: 80%;
 }

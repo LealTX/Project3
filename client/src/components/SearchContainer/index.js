@@ -1,5 +1,4 @@
 import React, { Component } from "react";
-import { render } from 'react-dom';
 import "../../actions/actions.js";
 import Search from "../SearchForm";
 import ResultList from "../ResultList";
@@ -79,7 +78,7 @@ class Playback extends Component {
             console.log(this.state.addedSong);
         }, 1000)
         this.setState({ searchTrack: '' })
-        this.setState( { searchResults: [] } )
+        this.setState({ searchResults: [] })
         // console.log(this.state.searchTrack)
     }
 
@@ -88,15 +87,19 @@ class Playback extends Component {
 
         return (
             <div>
-                <Search
-                    searchTrack={searchTrack}
-                    onChange={this.handleChange}
-                    search={this.handleSubmit}
-                />
-                <ResultList
-                    searchResults={searchResults}
-                    onSelect={ this.onSelect }
-                />
+                <td className="searchText">
+                    <Search
+                        searchTrack={searchTrack}
+                        onChange={this.handleChange}
+                        search={this.handleSubmit}
+                    />
+                </td>
+                <td className="results">
+                    <ResultList
+                        searchResults={searchResults}
+                        onSelect={this.onSelect}
+                    />
+                </td>
             </div>
         );
     }
