@@ -2,6 +2,7 @@ import React, { Component } from "react";
 import "../../actions/actions.js";
 import Search from "../SearchForm";
 import ResultList from "../ResultList";
+import Queued from "../Queued";
 import SpotifyWebApi from 'spotify-web-api-js';
 
 const spotifyApi = new SpotifyWebApi();
@@ -20,7 +21,7 @@ class Playback extends Component {
             results: [0, 1, 2, 3, 4],
             searchResults: [],
             searchKey: '',
-            addedSong: ''
+            addedSongs: []
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
@@ -83,7 +84,7 @@ class Playback extends Component {
     }
 
     render() {
-        const { searchResults, searchTrack } = this.state;
+        const { searchResults, searchTrack, addedSongs } = this.state;
 
         return (
             <div>
@@ -100,6 +101,11 @@ class Playback extends Component {
                         onSelect={this.onSelect}
                     />
                 </td>
+                <tr>
+                    <Queued 
+                        addedSongs={addedSongs}
+                    />
+                </tr>
             </div>
         );
     }

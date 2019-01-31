@@ -1,13 +1,15 @@
 import React from 'react';
-import NowPlaying from "./components/NowPlaying";
 import LoginButton from "./components/LoginButton";
+import Queued from "./components/Queued";
+import Main from "./pages/Main";
 import './App.css';
 
 function App() {
     return (
       <div className="App">
         <LoginButton />
-        <NowPlaying />
+        <Main />
+        <Queued />
       </div>
     );
   }
