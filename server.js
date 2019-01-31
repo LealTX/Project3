@@ -139,13 +139,13 @@ app.get('/refresh_token', function(req, res) {
   });
 });
 
-app.get("/signin", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/login.html"));
-});
+// app.get("/signin", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/build/login.html"));
+// });
 
-app.get("*", (req, res) => {
-  res.sendFile(path.join(__dirname, "./client/build/index.html"));
-});
+// app.get("*", (req, res) => {
+//   res.sendFile(path.join(__dirname, "./client/build/index.html"));
+// });
 
 app.listen(PORT, () => {
   console.log(`🌎 ==> API server now on port ${PORT}!`);
