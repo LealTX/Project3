@@ -1,7 +1,9 @@
 import React, { Component } from "react";
 import SpotifyWebApi from 'spotify-web-api-js';
-import SearchContainer from "../components/SearchContainer";
+import Search from "../components/SearchForm";
+import ResultList from "../components/ResultList";
 import NowPlaying from "../components/NowPlaying";
+import Queued from "../components/Queued";
 import "./style.css";
 
 const spotifyApi = new SpotifyWebApi();
@@ -22,8 +24,17 @@ class Main extends Component {
                 albumArt: '',
                 track: '',
                 artist: ''
-            }
+            },
+            searchTrack: '',
+            results: [0, 1, 2, 3, 4],
+            searchResults: [],
+            searchKey: '',
+            addedSongs: []
         }
+        this.handleChange = this.handleChange.bind(this);
+        this.handleSubmit = this.handleSubmit.bind(this);
+        this.searchTracks = this.searchTracks.bind(this);
+        this.onSelect = this.onSelect.bind(this);
     }
 
     getHashParams() {
@@ -53,22 +64,79 @@ class Main extends Component {
             })
     }
 
+    searchTracks(search) {
+        console.log(search);
+        spotifyApi.searchTracks(search)
+            .then(data => {
+                this.setState({
+                    searchResults: [
+                        `${data.tracks.items[0].artists[0].name} - ${data.tracks.items[0].name}`,
+                        `${data.tracks.items[1].artists[0].name} - ${data.tracks.items[1].name}`,
+                        `${data.tracks.items[2].artists[0].name} - ${data.tracks.items[2].name}`,
+                        `${data.tracks.items[3].artists[0].name} - ${data.tracks.items[3].name}`
+                    ]
+                })
+            }, function (err) {
+                console.error(err);
+            });
+    }
+
+
+    handleChange(event) {
+        this.setState({ searchTrack: event.target.value });
+    }
+
+    handleSubmit(event) {
+        event.preventDefault();
+        setTimeout(() => {
+            this.searchTracks(this.state.searchTrack);
+            event.preventDefault();
+        }, 1000)
+    }
+
+    onSelect(event) {
+        this.setState({ addedSongs: [...this.state.addedSongs, event.target.value ]});
+        console.log("Added Songs: " + this.state.addedSongs);
+        this.setState({ searchTrack: '' });
+        this.setState({ searchResults: [] });
+        // console.log(this.state.searchTrack)
+    }
+
     render() {
         const { albumArt, track, artist } = this.state.nowPlaying;
+        const { searchResults, searchTrack, addedSongs } = this.state;
+
         setTimeout(() => {
             this.getNowPlaying();
         }, 2000);
         return (
-            <div className="nowPlaying row">
-                <div className="col s6">
-                    <NowPlaying 
-                        albumArt={albumArt}
-                        track={track}
-                        artist={artist}
-                    />
+            <div>
+                <div className="nowPlaying row">
+                    <div className="col s5">
+                        <NowPlaying
+                            albumArt={albumArt}
+                            track={track}
+                            artist={artist}
+                        />
+                    </div>
+                    <div className="search col s3">
+                        <Search
+                            searchTrack={searchTrack}
+                            onChange={this.handleChange}
+                            search={this.handleSubmit}
+                        />
+                    </div>
+                    <div className="results col s4">
+                        <ResultList
+                            searchResults={searchResults}
+                            onSelect={this.onSelect}
+                        />
+                    </div>
                 </div>
-                <div className="search col s6">
-                    <SearchContainer />
+                <div className="queued row">
+                    <Queued
+                        addedSongs={addedSongs}
+                    />
                 </div>
             </div>
         );

@@ -88,24 +88,28 @@ class Playback extends Component {
 
         return (
             <div>
-                <td className="searchText">
-                    <Search
-                        searchTrack={searchTrack}
-                        onChange={this.handleChange}
-                        search={this.handleSubmit}
-                    />
-                </td>
-                <td className="results">
-                    <ResultList
-                        searchResults={searchResults}
-                        onSelect={this.onSelect}
-                    />
-                </td>
-                <tr>
-                    <Queued 
-                        addedSongs={addedSongs}
-                    />
-                </tr>
+                <row>
+                    <td className="searchText">
+                        <Search
+                            searchTrack={searchTrack}
+                            onChange={this.handleChange}
+                            search={this.handleSubmit}
+                        />
+                    </td>
+                    <td className="results">
+                        <ResultList
+                            searchResults={searchResults}
+                            onSelect={this.onSelect}
+                        />
+                    </td>
+                </row>
+                <row>
+                    <td>
+                        <Queued
+                            addedSongs={addedSongs}
+                        />
+                    </td>
+                </row>
             </div>
         );
     }

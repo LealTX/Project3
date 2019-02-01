@@ -8,7 +8,7 @@ var cookieParser = require('cookie-parser');
 
 var client_id = process.env.CLIENT_ID || "1ab9d9a6f67c4dd28cca2cce40e362fc"; // Your client id
 var client_secret = process.env.CLIENT_SECRET || "49ea1886678f4253abc7c9b1fd3c467f"; // Your secret
-var redirect_uri = process.env.REDIRECT_URI || "https://secure-sierra-79189.herokuapp.com/callback"; // Your redirect uri
+var redirect_uri = process.env.REDIRECT_URI || "http://localhost:8888/callback"; // Your redirect uri
 
 var generateRandomString = function(length) {
   var text = '';
@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Define API routes here
 
-app.get('https://secure-sierra-79189.herokuapp.com/login', function(req, res) {
+app.get('/login', function(req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
@@ -101,7 +101,7 @@ app.get('/callback', function(req, res) {
         });
 
         // we can also pass the token to the browser to make requests from there
-        res.redirect('https://secure-sierra-79189.herokuapp.com/#' +
+        res.redirect('http://localhost:3000/#' +
           querystring.stringify({
             access_token: access_token,
             refresh_token: refresh_token
