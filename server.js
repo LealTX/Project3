@@ -33,7 +33,7 @@ if (process.env.NODE_ENV === "production") {
 
 // Define API routes here
 
-app.get('/login', function(req, res) {
+app.get('https://secure-sierra-79189.herokuapp.com/login', function(req, res) {
 
   var state = generateRandomString(16);
   res.cookie(stateKey, state);
