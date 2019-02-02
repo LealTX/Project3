@@ -4,13 +4,14 @@ import Search from "../components/SearchForm";
 import ResultList from "../components/ResultList";
 import NowPlaying from "../components/NowPlaying";
 import Queued from "../components/Queued";
+import fire from '../fire';
 import "./style.css";
 
 const spotifyApi = new SpotifyWebApi();
 
 class Main extends Component {
-    constructor() {
-        super();
+    constructor(props) {
+        super(props);
         const params = this.getHashParams();
         console.log(params);
         const token = params.access_token;
@@ -29,13 +30,33 @@ class Main extends Component {
             results: [0, 1, 2, 3, 4],
             searchResults: [],
             searchKey: '',
-            addedSongs: []
+            addedSongs: [],
+            track: ''
         }
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.searchTracks = this.searchTracks.bind(this);
         this.onSelect = this.onSelect.bind(this);
     }
+
+    componentDidMount(){
+        const songsRef = fire.database().ref('songs');
+        songsRef.on('value', (snapshot)=> {
+            let addedSongs = snapshot.val();
+            let newState = [];
+            for (let song in addedSongs){
+                newState.push({
+                    id: song,
+                    track: addedSongs[song].track
+                });
+            }
+            this.setState({
+                addedSongs: newState
+            })
+            })
+          }
+
+    
 
     getHashParams() {
         var hashParams = {};
@@ -99,6 +120,12 @@ class Main extends Component {
         console.log("Added Songs: " + this.state.addedSongs);
         this.setState({ searchTrack: '' });
         this.setState({ searchResults: [] });
+        const songsRef = fire.database().ref('songs');
+        const song = { track: event.target.value }
+        songsRef.push(song);
+        this.setState({
+            track: ''
+        });
         // console.log(this.state.searchTrack)
     }
 

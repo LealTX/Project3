@@ -10,7 +10,7 @@ function Queued(props) {
                 <ul classname="list-group">
                     {props.addedSongs.map(r => (
                         <li className="list-group-item" key={r}>
-                            <text>{r}</text>
+                            <text>{r.track}</text>
                         </li>
                     ))}
                 </ul>
