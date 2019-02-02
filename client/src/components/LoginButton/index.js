@@ -82,7 +82,7 @@ class LoginButton extends Component {
                         Party Vibes
                     </ul>
                     <ul className="right hide-on-med-and-down loginDisplay">
-                        <li><a href='https://secure-sierra-79189.herokuapp.com/login'><Icon left>person</Icon>Login to Spotify!</a></li>
+                        <text><a href='/login'><Icon left>person</Icon>Login to Spotify</a></text>
                     </ul>
                 </div>
             </nav>
