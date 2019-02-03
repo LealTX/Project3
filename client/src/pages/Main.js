@@ -51,6 +51,7 @@ class Main extends Component {
         this.onSelect = this.onSelect.bind(this);
         this.onPlayClick=this.onPlayClick.bind(this);
         this.onNextClick=this.onNextClick.bind(this);
+        this.handleLogin=this.handleLogin.bind(this);
     }
 
     componentDidMount() {
