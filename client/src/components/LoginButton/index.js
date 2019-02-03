@@ -22,11 +22,6 @@ class LoginButton extends Component {
         }
 
         this.getProfile = this.getProfile.bind(this);
-        this.getURL = this.getURL.bind(this);
-
-        if(this.state.loggIn) {
-            this.getProfile();
-        }
     }
 
     getHashParams() {
@@ -52,11 +47,6 @@ class LoginButton extends Component {
                 console.log('Something went wrong!', err);
             }
         );
-    }
-
-    getURL(){
-        const url = window.location.href;
-        console.log(url.substring(35, 206))
     }
 
     render() {

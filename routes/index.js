@@ -1,7 +1,6 @@
 const path = require("path");
 var request = require('request');
 var querystring = require('querystring');
-
 const router = require("express").Router();
 
 var client_id = process.env.CLIENT_ID; // Your client id
