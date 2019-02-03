@@ -1,5 +1,7 @@
 var express = require("express");
 const routes = require("./routes");
+var cors = require('cors');
+var cookieParser = require('cookie-parser');
 var PORT = process.env.PORT || 8888;
 
 
@@ -9,6 +11,8 @@ app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 if (process.env.NODE_ENV === "production") {
   app.use(express.static('client/build'))
+  .use(cors())
+  .use(cookieParser());
 }
 
 
