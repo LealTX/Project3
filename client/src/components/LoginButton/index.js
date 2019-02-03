@@ -82,7 +82,7 @@ class LoginButton extends Component {
                         Party Vibes
                     </ul>
                     <ul className="right hide-on-med-and-down loginDisplay">
-                        <li><a href='/login'><Icon left>person</Icon>Login to Spotify</a></li>
+                        <li><a href='/login/spotify'><Icon left>person</Icon>Login to Spotify</a></li>
                     </ul>
                 </div>
             </nav>

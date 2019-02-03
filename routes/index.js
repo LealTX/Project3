@@ -21,7 +21,7 @@ var generateRandomString = function(length) {
 
 var stateKey = 'spotify_auth_state';
 
-router.get('/login', function(req, res) {
+router.get('/login/spotify', function(req, res) {
   console.log("Got to the login");
 
     var state = generateRandomString(16);
