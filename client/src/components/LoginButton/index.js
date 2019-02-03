@@ -22,6 +22,10 @@ class LoginButton extends Component {
         }
 
         this.getProfile = this.getProfile.bind(this);
+
+        if(this.state.loggIn) {
+            this.getProfile();
+        }
     }
 
     getHashParams() {
