@@ -5,9 +5,9 @@ var querystring = require('querystring');
 
 const router = require("express").Router();
 
-var client_id = process.env.CLIENT_ID || "1ab9d9a6f67c4dd28cca2cce40e362fc"; // Your client id
-var client_secret = process.env.CLIENT_SECRET || "49ea1886678f4253abc7c9b1fd3c467f"; // Your secret
-var redirect_uri = process.env.REDIRECT_URI || "http://localhost:8888/callback"; // Your redirect uri
+var client_id = process.env.CLIENT_ID; // Your client id
+var client_secret = process.env.CLIENT_SECRET; // Your secret
+var redirect_uri = process.env.REDIRECT_URI; // Your redirect uri
 
 var generateRandomString = function(length) {
   var text = '';
@@ -22,6 +22,7 @@ var generateRandomString = function(length) {
 var stateKey = 'spotify_auth_state';
 
 router.get('/login', function(req, res) {
+  console.log("Got to the login");
 
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
@@ -115,7 +116,7 @@ router.get('/login', function(req, res) {
   });
 
 router.use(function(req, res) {
-    res.sendFile(path.join(__dirname, "../../client/build/login.html"));
+    res.sendFile(path.join(__dirname, "../client/build/index.html"));
   });
   
   module.exports = router;
