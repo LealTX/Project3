@@ -4,7 +4,7 @@ import "./style.css";
 
 function ResultList(props) {
     return (
-        <ul clasName="list-group">
+        <div className="list-group">
             {props.searchResults.map(r => (
                 <li className="list-group-item" key={r}>
                     <Button
@@ -16,7 +16,7 @@ function ResultList(props) {
                         </Button>
                 </li>
             ))}
-        </ul>
+        </div>
     );
 
 }

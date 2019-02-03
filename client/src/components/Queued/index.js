@@ -7,10 +7,10 @@ function Queued(props) {
         <div>
             <div className="divQueued col s3">
                 <text className="headerQueued">Queued Songs</text>
-                <ul classname="list-group">
+                <ul className="list-group">
                     {props.addedSongs.map(r => (
-                        <li className="list-group-item" key={r}>
-                            <text>{r.track}</text>
+                        <li className="list-group-item" key={r.id}>
+                            {r.track}
                         </li>
                     ))}
                 </ul>

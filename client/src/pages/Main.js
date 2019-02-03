@@ -13,12 +13,12 @@ class Main extends Component {
     constructor(props) {
         super(props);
         const params = this.getHashParams();
-        console.log(params);
         const token = params.access_token;
         if (token) {
             spotifyApi.setAccessToken(token);
         }
         this.state = {
+            token: token,
             loggIn: token ? true : false,
             nowPlaying: {
                 name: 'Not Checked',
@@ -31,20 +31,34 @@ class Main extends Component {
             searchResults: [],
             searchKey: '',
             addedSongs: [],
-            track: ''
+            track: '',
+
+            deviceId: "",
+            loggedIn: false,
+            error: "",
+            trackName: "Track Name",
+            artistName: "Artist Name",
+            albumName: "Album Name",
+            playing: false,
+            position: 0,
+            duration: 0,
         }
+
+        this.playerCheckInterval = null
         this.handleChange = this.handleChange.bind(this);
         this.handleSubmit = this.handleSubmit.bind(this);
         this.searchTracks = this.searchTracks.bind(this);
         this.onSelect = this.onSelect.bind(this);
+        this.onPlayClick=this.onPlayClick.bind(this);
+        this.onNextClick=this.onNextClick.bind(this);
     }
 
-    componentDidMount(){
+    componentDidMount() {
         const songsRef = fire.database().ref('songs');
-        songsRef.on('value', (snapshot)=> {
+        songsRef.on('value', (snapshot) => {
             let addedSongs = snapshot.val();
             let newState = [];
-            for (let song in addedSongs){
+            for (let song in addedSongs) {
                 newState.push({
                     id: song,
                     track: addedSongs[song].track
@@ -53,10 +67,103 @@ class Main extends Component {
             this.setState({
                 addedSongs: newState
             })
-            })
-          }
+        })
+        this.handleLogin()
+        return
+    }
 
-    
+    handleLogin() {
+        if (this.state.token !== "") {
+            this.setState({ loggedIn: true });
+            this.playerCheckInterval = setInterval(() => this.checkForPlayer(), 3000);
+        }
+    }
+
+    onStateChanged(state) {
+        if (state !== null) {
+          const {
+            current_track: currentTrack,
+            position,
+            duration,
+          } = state.track_window;
+          const trackName = currentTrack.name;
+          const albumName = currentTrack.album.name;
+          const artistName = currentTrack.artists
+            .map(artist => artist.name)
+            .join(", ");
+          const playing = !state.paused;
+          this.setState({
+            position,
+            duration,
+            trackName,
+            albumName,
+            artistName,
+            playing
+          });
+        } else {
+          this.setState({ error: "Looks like you might have swapped to another device?" });
+        }
+      }
+
+    checkForPlayer() {
+        const { token } = this.state;
+
+        if (window.Spotify !== null) {
+            clearInterval(this.playerCheckInterval);
+            this.player = new window.Spotify.Player({
+                name: "Jacob's Spotify Player",
+                getOAuthToken: cb => { cb(token); },
+            });
+            this.createEventHandlers();
+            this.player.connect();
+        }
+    }
+
+    createEventHandlers() {
+        this.player.on('initialization_error', e => { console.error(e); });
+        this.player.on('authentication_error', e => {
+            console.error(e);
+            this.setState({ loggedIn: false });
+        });
+        this.player.on('account_error', e => { console.error(e); });
+        this.player.on('playback_error', e => { console.error(e); });
+
+        this.player.on('player_state_changed', state => this.onStateChanged(state));
+
+        this.player.on('ready', async data => {
+            let { device_id } = data;
+            console.log("Let the music play on!");
+            await this.setState({ deviceId: device_id });
+            console.log(device_id)
+            this.transferPlaybackHere();
+        });
+    }
+
+    transferPlaybackHere() {
+        const { deviceId, token } = this.state;
+        // https://beta.developer.spotify.com/documentation/web-api/reference/player/transfer-a-users-playback/
+        fetch("https://api.spotify.com/v1/me/player", {
+            method: "PUT",
+            headers: {
+                authorization: `Bearer ${token}`,
+                "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+                "device_ids": [deviceId],
+                // true: start playing music if it was paused on the other device
+                // false: paused if paused on other device, start playing music otherwise
+                "play": true,
+            }),
+        });
+    }
+      
+      onPlayClick() {
+        this.player.togglePlay();
+      }
+      
+      onNextClick() {
+        this.player.nextTrack();
+      }
 
     getHashParams() {
         var hashParams = {};
@@ -116,7 +223,7 @@ class Main extends Component {
     }
 
     onSelect(event) {
-        this.setState({ addedSongs: [...this.state.addedSongs, event.target.value ]});
+        this.setState({ addedSongs: [...this.state.addedSongs, event.target.value] });
         console.log("Added Songs: " + this.state.addedSongs);
         this.setState({ searchTrack: '' });
         this.setState({ searchResults: [] });
@@ -126,8 +233,9 @@ class Main extends Component {
         this.setState({
             track: ''
         });
-        // console.log(this.state.searchTrack)
     }
+
+
 
     render() {
         const { albumArt, track, artist } = this.state.nowPlaying;
@@ -135,7 +243,7 @@ class Main extends Component {
 
         setTimeout(() => {
             this.getNowPlaying();
-        }, 2000);
+        }, 6000);
         return (
             <div>
                 <div className="nowPlaying row">
@@ -144,6 +252,8 @@ class Main extends Component {
                             albumArt={albumArt}
                             track={track}
                             artist={artist}
+                            onPlayClick={this.onPlayClick}
+                            onNextClick={this.onNextClick}
                         />
                     </div>
                     <div className="search col s3">

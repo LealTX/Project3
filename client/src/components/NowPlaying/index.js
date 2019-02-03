@@ -1,4 +1,4 @@
-import React, { Component } from "react";
+import React from "react";
 import "../../actions/actions.js";
 import "./style.css";
 
@@ -10,9 +10,9 @@ function NowPlaying(props) {
                 <img className="albumArt" src={props.albumArt} alt="Album Art" style={{ height: 200 }} />
             </td>
             <td className="track">
-                <text>
-                    <b>Now Playing:</b> {props.track}<br /><b>Artist: </b>{props.artist}
-                </text>
+                    <b>Now Playing:</b> {props.track}<br /><b>Artist: </b>{props.artist}<br />
+                    <button onClick={props.onPlayClick}>Play/Pause</button>
+                    <button onClick={props.onNextClick}>Next</button>
             </td>
         </div>
     );

@@ -22,6 +22,7 @@ class LoginButton extends Component {
         }
 
         this.getProfile = this.getProfile.bind(this);
+        this.getURL = this.getURL.bind(this);
 
         if(this.state.loggIn) {
             this.getProfile();
@@ -53,6 +54,11 @@ class LoginButton extends Component {
         );
     }
 
+    getURL(){
+        const url = window.location.href;
+        console.log(url.substring(35, 206))
+    }
+
     render() {
         const { loggIn } =this.state;
 
@@ -82,7 +88,7 @@ class LoginButton extends Component {
                         Party Vibes
                     </ul>
                     <ul className="right hide-on-med-and-down loginDisplay">
-                        <text><a href='/login'><Icon left>person</Icon>Login to Spotify</a></text>
+                        <li><a href='/login'><Icon left>person</Icon>Login to Spotify</a></li>
                     </ul>
                 </div>
             </nav>
