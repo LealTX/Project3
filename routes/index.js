@@ -115,7 +115,7 @@ router.get('/login', function(req, res) {
   });
 
 router.use(function(req, res) {
-    res.sendFile(path.join(__dirname, "../../client/build/index.html"));
+    res.sendFile(path.join(__dirname, "../../client/build/login.html"));
   });
   
   module.exports = router;
