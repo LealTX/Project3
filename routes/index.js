@@ -1,13 +1,13 @@
 const path = require("path");
+const express = require("express");
 var request = require('request');
 var querystring = require('querystring');
-require("dotenv").config();
 
 const router = require("express").Router();
 
-var client_id = process.env.CLIENT_ID; // Your client id
-var client_secret = process.env.CLIENT_SECRET; // Your secret
-var redirect_uri = process.env.REDIRECT_URI; // Your redirect uri
+var client_id = process.env.CLIENT_ID || "1ab9d9a6f67c4dd28cca2cce40e362fc"; // Your client id
+var client_secret = process.env.CLIENT_SECRET || "49ea1886678f4253abc7c9b1fd3c467f"; // Your secret
+var redirect_uri = process.env.REDIRECT_URI || "http://localhost:8888/callback"; // Your redirect uri
 
 var generateRandomString = function(length) {
   var text = '';
@@ -25,9 +25,9 @@ router.get('/login', function(req, res) {
 
     var state = generateRandomString(16);
     res.cookie(stateKey, state);
-  console.log("Login Worked")
+  
     // your application requests authorization
-    var scope = 'user-read-private user-read-email user-read-playback-state streaming user-read-birthdate';
+    var scope = 'user-read-private user-read-email user-read-playback-state';
     res.redirect('https://accounts.spotify.com/authorize?' +
       querystring.stringify({
         response_type: 'code',
@@ -114,8 +114,8 @@ router.get('/login', function(req, res) {
     });
   });
 
-// router.use(function(req, res) {
-//     res.sendFile(path.join(__dirname, "../../client/build/login.html"));
-//   });
+router.use(function(req, res) {
+    res.sendFile(path.join(__dirname, "../../client/build/login.html"));
+  });
   
   module.exports = router;
