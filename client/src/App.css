@@ -1,5 +1,6 @@
 .App {
   text-align: center;
+  font-family: 'Ubuntu', sans-serif;
   /* background-image: url("./pictures/grid.jpg"); */
   /* background-repeat: no-repeat;
   background-attachment: fixed;
@@ -37,4 +38,8 @@
   to {
     transform: rotate(360deg);
   }
+}
+
+.matButton {
+  background-color: rgb(34,201,92);
 }

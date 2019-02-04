@@ -11,7 +11,7 @@ function Search(props) {
                 onChange={props.onChange}
             />
             <label label="searchMusic">Search Tracks or Artists</label>
-            <Button waves='light'onClick={props.search}>Search<Icon left>search</Icon></Button>
+            <Button className="matButton" waves='light'onClick={props.search}>Search<Icon left>search</Icon></Button>
         </div>
     );
 }

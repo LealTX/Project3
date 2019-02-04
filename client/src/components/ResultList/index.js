@@ -4,10 +4,10 @@ import "./style.css";
 
 function ResultList(props) {
     return (
-        <div className="list-group">
+        <ul className="list-group">
             {props.searchResults.map(r => (
                 <li className="list-group-item" key={r}>
-                    <Button
+                    <Button className="matButton" 
                         key={r.id} 
                         value={r}
                         onClick={props.onSelect}
@@ -16,7 +16,7 @@ function ResultList(props) {
                         </Button>
                 </li>
             ))}
-        </div>
+        </ul>
     );
 
 }

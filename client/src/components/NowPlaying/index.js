@@ -1,5 +1,6 @@
 import React from "react";
 import "../../actions/actions.js";
+import { Button, Icon} from 'react-materialize'
 import "./style.css";
 
 
@@ -11,8 +12,8 @@ function NowPlaying(props) {
             </td>
             <td className="track">
                     <b>Now Playing:</b> {props.track}<br /><b>Artist: </b>{props.artist}<br />
-                    <button onClick={props.onPlayClick}>Play/Pause</button>
-                    <button onClick={props.onNextClick}>Next</button>
+                    <Button className="matButton" onClick={props.onPlayClick}><Icon>play_arrow</Icon></Button>
+                    <Button className="matButton" onClick={props.onNextClick}><Icon>skip_next</Icon></Button>
             </td>
         </div>
     );
