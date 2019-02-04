@@ -12,7 +12,7 @@ function NowPlaying(props) {
             </td>
             <td className="track">
                     <b>Now Playing:</b> {props.track}<br /><b>Artist: </b>{props.artist}<br />
-                    <Button className="matButton" onClick={props.onPlayClick}><Icon>play_arrow</Icon></Button>
+                    <Button className="matButton2" onClick={props.onPlayClick}><Icon>play_arrow</Icon></Button>
                     <Button className="matButton" onClick={props.onNextClick}><Icon>skip_next</Icon></Button>
             </td>
         </div>

@@ -20,3 +20,8 @@
 .search {
     width: 80%;
 }
+
+.matButton2 {
+    margin-right: 5px;
+    background-color: rgb(34,201,92);
+}
